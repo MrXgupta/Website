@@ -16,6 +16,10 @@ body {
     transition: 0.5s;
 }
 
+body.noscroll {
+    overflow: hidden;
+  }
+
 header {
     /* width: 100vw; */
     height: 100vh;
@@ -284,6 +288,30 @@ footer {
 #skill-img>img:hover {
     transform: scale(0.8);
 }
+
+#loader {
+    width: 100%;
+    height: 100vh;
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+/* .load {
+   background-color: white;
+   width: 100%;
+   height: 100vh;
+   position: absolute;
+   top: 0;
+   z-index: 200;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+} */
 
 
 

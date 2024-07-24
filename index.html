@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="mouse">
+    <div id="loader">
+        <img src="images/loader.gif" alt="">
     </div>
     <header>
         <nav>
@@ -40,6 +41,8 @@
         <i class="fa-brands fa-github"></i>
         <p>GitHub</p>
     </div>
+
+   
 
     <section id="sec-1">
         <details id="about-me"> 
@@ -130,28 +133,48 @@
             <p> 2024 All Right Reserved </p>
         </footer>
 
-        <script>
-            
-        </script>
+        
+
     </section>
 
     
+        <script>
+            window.onload = function() {
+                disableScroll()
+                setTimeout(function() {
+                    document.querySelector('#loader').style.display="none";
+                    enableScroll();
+                },2000);
+
+
+
+               
+                // let img = document.createElement('img');
+                // document.body.appendChild(img)
+              
+                // img.src = 'images/loader.gif';
+                // img.classList.add('load')
+                // setTimeout(function() {
+                //     img.style.display="none";
+                //     enableScroll();
+                // },4000);
+            }
+
+        function disableScroll() {
+            document.body.classList.add("noscroll");
+        }
+
+        function enableScroll() {
+            document.body.classList.remove("noscroll");
+        }
+            document.getElementById('summary').addEventListener('click',function() {
+            this.parentElement.removeAttribute('open')
+        })
+        </script>
 
     
 
-    <script>
-       /* window.addEventListener('mousemove', function mouse(event) {
-            let x = event.clientX;
-            let y = event.clientY;
-            let mouse = document.querySelector('#mouse')
-            mouse.style.zIndex="11";
-            mouse.style.top = y +'px';
-            mouse.style.left = x + 'px';
-        }); */
-        document.getElementById('summary').addEventListener('click',function() {
-            this.parentElement.removeAttribute('open')
-        })
-    </script>
+    
     
 </body>
 </html>

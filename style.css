@@ -4,11 +4,11 @@
     padding: 0;
     color: white;
     user-select: none;
-    font-size:24px;
 }
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 body {
     position: relative;
@@ -29,8 +29,8 @@ nav {
     justify-content: end;
     padding: 10px 0;
     padding: 15px;
-   
     transition: 0.3s ease;
+    font-size: 1.2rem;
 }
 nav>span {
     margin: 0 10px;
@@ -48,7 +48,7 @@ nav>span:hover {
     position: relative;
     top: 20vh;
     width: 100%;
-    font-size: 3.5em;
+    font-size: 3.5rem;
     overflow: hidden;
     font-family:Georgia, 'Times New Roman', Times, serif;
     display: flex;
@@ -102,7 +102,7 @@ nav>span:hover {
     position: relative;
     top: 20vh;
     text-align: center;
-    font-size: 2em;
+    font-size: 2rem;
     padding: 5px 0;
 }
 
@@ -124,7 +124,7 @@ nav>span:hover {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 5px;
     border-radius: 10px;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     z-index: 10;
 }
 
@@ -175,12 +175,12 @@ a {
     margin: 5px 0;
     width: 100%;
     background-color: rgba(27,55,59,1);
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 #sec-1>p {
     overflow: hidden;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 details[open] summary ~ * {

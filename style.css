@@ -1,0 +1,362 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+    user-select: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+body {
+    position: relative;
+    transition: 0.5s;
+}
+
+body.noscroll {
+    overflow: hidden;
+  }
+
+header {
+    /* width: 100vw; */
+    height: 100vh;
+    background-image: url(images/header.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+nav {
+    display: flex;
+    justify-content: end;
+    padding: 10px 0;
+    padding: 15px;
+    transition: 0.3s ease;
+    font-size: 1.2rem;
+}
+nav>span {
+    margin: 0 10px;
+    filter: drop-shadow(2px 2px 5px white);
+    border: transparent;
+    transition: 0.3s ease;
+}
+nav>span:hover {
+    border-bottom: 1px solid #8efae8;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 5px #8efae8);
+}
+
+#name {
+    position: relative;
+    top: 20vh;
+    width: 100%;
+    font-size: 3.5rem;
+    overflow: hidden;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#name>span:last-child , #name>span:first-child {
+    color: #8efae6;
+    position: relative;
+}
+
+#name>span:last-child::before {
+    content: '';
+    width: 25px;
+    height: 2px;
+    border: 2px solid #8efae6;
+    display: block;
+    position:absolute;
+    right: -35px;
+    bottom: 0;
+    background-color: #8efae6;
+    animation: Blink 1s infinite alternate ease-in-out;
+}
+
+#O {
+    border: 3px solid #8efae6;
+    border-radius: 50%;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(2px 2px 10px #8efae8);
+    border-right: transparent;
+    animation: roll 3s infinite alternate-reverse linear;
+}
+#O::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: block;
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    right: -3px;
+    border: 1px solid white;
+
+}
+
+#name-p {
+    position: relative;
+    top: 20vh;
+    text-align: center;
+    font-size: 2rem;
+    padding: 5px 0;
+}
+
+#name-p>span {
+    color: transparent;
+    background-image: linear-gradient(#fff,#fff);
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    background-position: -500px 0;
+    animation: TextAnimation 5s infinite alternate linear;
+}
+
+#follow , #git {
+    position: fixed;
+    display: flex;
+    gap:5px;
+    margin: 0 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    z-index: 10;
+}
+
+#follow {
+    right: 0;
+    bottom: 20px;
+}
+
+#git {
+    left: 0;
+    bottom: 20px;
+    gap: 10px;
+}
+
+#follow>p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+#follow>i:hover , #git>i:hover   {
+    transform: scale(1.22);
+}
+
+a {
+    text-decoration: none;
+}
+
+#sec-1 {
+    padding: 15px;
+    background: rgb(27,55,59);
+    margin: 0 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 90vh;
+    z-index: 0;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+#sec-1>h1 , #sec-1>details>summary {
+    color: rgb(131, 160, 165);
+    text-align: left;
+    padding: 3px 0px;
+    margin: 5px 0;
+    width: 100%;
+    background-color: rgba(27,55,59,1);
+    font-size: 1.5rem;
+}
+
+#sec-1>p {
+    overflow: hidden;
+    font-size: 0.8rem;
+}
+
+details[open] summary ~ * {
+    animation: sweep .5s ease-in-out;
+}
+
+
+#sec-2 {
+    position: relative;
+    bottom: 0;
+}
+
+#projects {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-around;
+width: 100%;
+
+}
+
+#item {
+/* width: 30vw;
+height: 30vh; */
+flex: 0 0 30%;
+background-color: rgba(27,55,59,1);
+display: inline-block;
+margin: 10px;
+border-radius: 15px;
+position: relative;
+transition: 0.6s ease;
+}
+
+#item>a>img {
+width: 100%;
+height: 100%;
+border-radius: 15px;
+}
+
+#item:hover {
+filter: drop-shadow(2px 2px 10px white);
+transform: scale(0.8);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+input , textarea {
+    padding: 10px;
+    width: 50%;
+    margin: 10px 0;
+    border-bottom: 3px solid red;
+    border-right: 3px solid red;
+    border-top:transparent;
+    border-left: transparent;
+    border-radius: 2px;
+    resize: none;
+    color: black;
+}
+
+input:focus , textarea:focus {
+    box-shadow: 2px -2px 20px 5px rgb(236, 101, 101);
+    border: transparent;
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+}
+
+#skill-img {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#skill-img>img {
+    width: 10%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    margin: 10px;
+}
+
+#skill-img>img:hover {
+    transform: scale(0.8);
+}
+
+#loader {
+    width: 100%;
+    height: 100vh;
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+
+
+
+
+
+
+@keyframes sweep {
+ 0%    {opacity: 0; margin-left: -10px}
+100%  {opacity: 1; margin-left: 0px}
+}
+
+
+@media only screen and (max-width:500px) {
+    #skill-img>img:hover {
+    transform: scale(1.2);
+}
+
+#skill-img>img {
+    width: 20%;
+}
+nav {
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin: 0;
+}
+#item {
+    flex: 0 0 45%;
+}
+#item:hover {
+    transform: scale(1.2);
+}
+}
+
+
+@keyframes TextAnimation {
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes Blink {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes roll {
+
+    from {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(50deg)
+    }
+    50% {
+        transform: rotate(0deg)
+
+    }
+    to {
+        transform: rotate(-50deg);
+    }
+}

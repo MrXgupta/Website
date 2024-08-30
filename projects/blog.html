@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Blog Maker | Blogstra </title>
+    <style>
+        
+        nav  {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+        }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            display: inline-block;
+            margin: 0 2%;
+        }
+        h1{
+            color: rgb(68, 50, 127);
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        #new_post {
+            position: fixed;
+            bottom: 0;
+            right: 50px;
+            font-size: 2.5em;
+            background-color: rgb(0, 0, 0);
+            border: 1px solid black;
+            padding: 5px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+        }
+
+        #pop {
+            width: 50%;
+            border: 1px solid black;
+            height: 70vh;
+            margin: 0 25%;
+            position: absolute;
+            top: -71vh;
+            background-color: rgb(181, 181, 181);
+            text-align: center;
+            line-height: 30px;
+            transition: 0.3s;
+            overflow: hidden;
+          
+        }
+        #pop>p {
+            position: absolute;
+            right: 0;
+            top: -23px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #pop>p:hover {
+            background-color: red;
+            color: white;
+        }
+        .pop_a {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin: 0 10px;
+        }
+
+        #posts li {
+            width: 80%;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 5px 0;
+        }
+
+        .container>span {
+            width: 90%;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: block;
+            padding: 10px;
+            margin: 0 5%;
+            border-radius: 20px;
+        }
+
+        #noPost {
+            text-align: center;
+            margin-top:20vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="pop">
+        <p onclick="document.getElementById('pop').style.top='-71vh'">X</p>
+        <h2> Create a New Post </h2>
+        <div class="pop_a">
+            
+            <label for="title">Enter Post Title : </label>
+            <input type="text" id="title">
+            <label for="msg"> Enter your Post : </label>
+            <textarea id="" cols="30" rows="10" id="message"></textarea>
+            <button id="saveBtn" onclick="save()"> Save! </button>
+        </div>
+    </div>
+    <nav>
+        <ul>
+           <a href=""> <li><h1>Blogstra</h1></li> </a>
+           <a href=""> <li> Home </li></a>
+           <a href=""> <li> Posts </li></a>
+           <a href=""> <li> Create New Post </li></a>
+           <a href=""> <li> About </li></a>
+           <a href=""> <li> Contact Us </li></a>
+        </ul>
+    </nav>
+
+    <h2 id="new_post" onclick="me()">+</h2>
+    
+    <div class="container">
+        <span> Posts </span>
+        <ul id="posts">
+           
+        </ul>
+    </div>
+
+    <p id="noPost"> Your Post Will Show Here! </p>
+
+
+
+    <script> 
+    function me() {
+        document.getElementById('pop').style.top="15vh"
+    }
+
+    function save() {
+        let title = document.getElementById("title");
+        let post = document.getElementById('posts');
+        let mg = document.getElementsByTagName('textarea')[0];
+        let li = document.createElement('li');
+        document.getElementById("noPost").style.display="none";
+        let date = new Date();
+        li.innerHTML = ` Title : ${title.value} <br> <br> Message : ${mg.value} <br> Last Time Modified : ${date.toLocaleDateString()} `;
+        document.getElementById('pop').style.top="-71vh"
+        post.appendChild(li);
+        let a = title.value;
+        let b = mg.value;
+        let me = {title: a , mg:b}
+        localStorage.setItem('me' , JSON.stringify(me));
+        title.value = '';
+        mg.value = '';
+    }
+    </script>
+</body>
+</html>

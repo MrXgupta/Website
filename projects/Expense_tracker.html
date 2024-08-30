@@ -1,0 +1,104 @@
+<!doctype HTML>
+<html>
+<head>
+<title> Practicing JavaScript | Alok Gupta </title>
+<style> 
+html {
+	background-color: #333;
+	color: white;
+	font-size: 1.5em;
+}
+h1 {
+	text-align: center;
+}
+
+#container {
+	line-height: 3;
+	display: flex;
+	align-items:center ;
+	justify-content: center;
+	flex-direction: column;
+}
+input {
+	width: 20vw;
+	padding: 5px;
+}
+
+button {
+	margin: 0 2vw;
+	padding: 5px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+#item {
+	background-color: rgba(255, 255, 255, 0.2);
+	padding: 0 50px;
+}
+#slct {
+	position: absolute;
+	top: 24vh;
+	display: none;
+}
+</style>
+</head>
+<body>
+<h1> Expense Traker </h1>
+
+<div id="container">
+	<label for="item-name"> Item Name : </label> 
+	<input type="text" id="item-name" placeholder="Enter Item Name" onclick="selectMe()">
+	<div id="slct">
+		<select name="list" id="list" >
+			<option value="alok"> -- You can select From Drop Down List </option>
+			<option value="">Alok 1</option>
+			<option value="">Alok 2</option>
+			<option value="">Alok 3</option>
+			<option value="">Alok 4</option>
+			<option value="">Alok 5</option>
+			
+		</select>
+	</div>
+	<label for="item-amnt"> Item Amount : </label>
+	<input type="number"placeholder="Enter Item Amount" id="item-amnt" oninput="limitDigits(this, 3)">
+	<p id="alert"></p>
+	<button onclick="pushItem()"> Add item </button>
+	<h3 id="item"> </h3>
+</div>
+
+
+
+
+	
+<script>
+	
+
+	function pushItem() {
+		let a = document.getElementById("item-name").value;
+		let b = document.getElementById("item-amnt").value;
+		let c = document.getElementById("alert");
+		let x = 0;
+		if (a && b) {
+        let item = {name: a, amount: b};
+		c.innerHTML = `SuccessFully Added!`;
+		document.getElementById("item").innerHTML = document.getElementById("item").innerHTML + ` <br> ${a} : ${b} `;
+		localStorage.setItem('item',JSON.stringify(item));
+		
+		}
+		else {
+			c.innerHTML = `Please Enter Both Value`;
+		}
+		
+	}
+
+	function limitDigits(input, maxLength) {
+    if (input.value.length > maxLength) {
+        input.value = input.value.slice(0, maxLength);
+    }
+}
+
+           
+	
+</script>
+</body>
+</html>

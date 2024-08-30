@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quiz App </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        html {
+            background-color: rgb(0, 81, 81);
+            transition: 0.3s;
+            -webkit-user-select:none;
+            -ms-user-select: none;
+            user-select: none;
+            font-size: 16px;
+        }
+
+        #content {
+            background-color: white;
+            padding: 20px;
+            width: 70%;
+            height: auto;
+            line-height: 30px;
+            min-width: 20%;
+            overflow:hidden;
+            border-radius: 20px;
+        }
+        #content>h4 {
+            display: inline-block;
+        }
+        #number {
+            float: right;
+            font-weight: 900;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        #display {
+            display:none;
+        }
+        
+        .pointer {
+            pointer-events: none;
+            cursor: not-allowed!important
+        }
+
+        button {
+            padding: 0 10px;
+            background-color: rgb(0, 81, 81);
+            border: none;
+            color: white;
+            border-radius: 5px;
+            width: 100px;
+        }
+        
+        #addque {
+            transition: 0.5s;
+            display: flex;
+            background-color: white;
+            flex-direction: column;
+            width: 50%;
+            padding: 10px;
+            text-align: left;
+            gap:10px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: absolute;
+            top: -100vh;
+            left: 25%;
+
+        }
+
+        #addque>button {
+            width: 40%;
+            padding: 5px;
+            align-items: center;
+        }
+
+        #addque>#data>input {
+            padding: 5px 15px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        #addque>#data>input:focus {
+            border: 1px solid transparent;
+        }
+
+        #addme {
+            background-color: white;
+            border-radius: 50%;
+            display: inline-block;
+            text-align: center;
+            padding: 5px 15px;
+            font-size: 1.5em;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        #data {
+            display: none;
+        }
+
+        #theme {
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            border: 3px solid red;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <div id="content">
+            <h4> Simple Quiz </h4> <span id="number"></span> <br>
+            <button onclick="next()"> Start</button>
+            <hr>
+            <p id="details">
+                Once you click NEXT Button you can not back,<br>
+                Score will be shown at last of quiz, <br>
+                Once you select a answer you'll not able to undo that.
+                Correct option will show on the spot when you will click on answer, whether that is correct or not. <br>
+                You can skip any Question.
+            </p>
+        </div>
+    </main>
+    <div id="display">
+        <div class="que">
+            <ul class='ul'>
+                What is the capital of Japan?
+                <li>a) Beijing</li>
+                <li>b) Seoul</li>
+                <li id=''>c) Tokyo</li>
+                <li>d) Bangkok</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                Which planet is known as the "Morning Star" or the "Evening Star"?
+                <li>a) Mars</li>
+                <li id=''>b) Venus</li>
+                <li>c) Jupiter</li>
+                <li>d) Saturn</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                Who developed the theory of relativity?
+                <li>a) Isaac Newton</li>
+                <li id=''>b) Albert Einstein</li>
+                <li>c) Nikola Tesla</li>
+                <li>d) Galileo Galilei</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                What is the largest organ in the human body?
+                <li>a) Heart</li>
+                <li>b) Liver</li>
+                <li id=''>c) Skin</li>
+                <li>d) Brain</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                Which country is known as the Land of the Rising Sun?
+                <li>a) China</li>
+                <li id='' >b) Japan</li>
+                <li>c) Thailand</li>
+                <li>d) South Korea</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                What is the longest river in the world?
+                <li>a) Nile</li>
+                <li id=''>b) Amazon</li>
+                <li>c) Yangtze</li>
+                <li>d) Mississippi</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                Who wrote "Pride and Prejudice"?
+                <li>a) Charlotte Brontë</li>
+                <li id=''>b) Jane Austen</li>
+                <li>c) Emily Dickinson</li>
+                <li>d) Mary Shelley</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                What is the smallest unit of life?
+                <li>a) Atom</li>
+                <li>b) Molecule</li>
+                <li id=''>c) Cell</li>
+                <li>d) Tissue</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                What is the primary language spoken in Brazil?
+                <li>a) Spanish</li>
+                <li id=''>b) Portuguese</li>
+                <li>c) French</li>
+                <li>d) Italian</li>
+                 
+            </ul>
+        </div>
+        
+        <div class="que ">
+            <ul class='ul'>
+                Which element is commonly known as the "King of the Elements" due to its unique none properties and ability to form the backbone of organic chemistry?
+                <li>a) Oxygen</li>
+                <li>b) Hydrogen</li>
+                <li id=''>c) Carbon</li>
+                <li>d) Nitrogen</li>
+                 
+            </ul>
+        </div>
+            </div>
+
+            <div id="addque">
+                <h3> Add Questions </h3>
+                <button> Create a New Quiz </button>
+                <button id="addInExistingQuiz"> Add in Existing Quiz </button>
+                
+                <div id="data">
+                    <label for="Question"> Question </label><br>
+                <input type="text" id="Question"><br>
+
+                <label for="fOpt"> First option </label><br>
+                    <input type="text" id="fOpt"><br>
+                <label for="sOpt"> Second Option </label>  <br>  
+                    <input type="text" id="sOpt"><br>
+                <label for="tOpt"> Third Option</label><br>
+                    <input type="text" id="tOpt"><br>
+                <label for="cOpt"> Correct option</label><br>
+                    <input type="text" name="" id="cOpt"><br>
+                    <button id="save"> Save Now </button>
+                    <button id="done"> Done </button>
+                </div>
+            </div>
+
+            <div id="addme">
+                <h1>+</h1>
+            </div>
+
+            <div id="theme" title="Change Theme">
+
+            </div>
+
+            
+            
+        
+
+            <script>
+
+        var score = 0;
+        var i = -1;
+        var z = -1;
+        let won;
+        let arry = [];
+        let number = 0;
+
+        document.querySelector('#theme').addEventListener('click',function() {
+            let r = Math.floor(Math.random()*255);
+            let g = Math.floor(Math.random()*255);
+            let b = Math.floor(Math.random()*255);
+            let x = `rgb(${r},${g},${b})`;
+            console.log(x)
+            document.body.style.backgroundColor=x;
+        })
+
+                // Stoping Double Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+                // creating function for button to show form
+        document.getElementById('addInExistingQuiz').addEventListener('click', function () {
+        document.getElementById('data').style.display="block";
+            
+        })
+
+            // Function to save the Data and push to body
+        document.getElementById('save').addEventListener('click', function() {
+            // Accessing the targets 
+            let que = document.getElementById('Question');
+            let fOpt = document.getElementById('fOpt')
+            let sOpt = document.getElementById('sOpt')
+            let tOpt = document.getElementById('tOpt')
+            let cOpt = document.getElementById('cOpt')
+
+
+            if(que.value == '' || fOpt.value == '' || sOpt.value == '' || tOpt.value == '' || cOpt.value == '') {
+                alert('Please Fill all Values')
+                return
+            }
+            
+            // creating div and their ELements
+            let display1 = document.getElementById('display')
+            // Adding attributs or text Content
+            let que1 = document.createElement('div');
+            que1.setAttribute('class','que')
+            let ul1 = document.createElement('ul')
+            ul1.setAttribute('class', 'ul')
+            ul1.textContent = que.value;
+            let li1 = document.createElement('li')
+            li1.textContent = fOpt.value;
+            let li2 = document.createElement('li')
+            li2.textContent = sOpt.value;
+            let li3 = document.createElement('li')
+            li3.textContent = tOpt.value;
+            let li4 = document.createElement('li')
+            li4.setAttribute('id','')
+            li4.textContent = cOpt.value;
+            
+            // appending all the Elements
+            display1.appendChild(que1);
+            que1.appendChild(ul1);
+            ul1.appendChild(li1)
+            ul1.appendChild(li2)
+            ul1.appendChild(li3)
+            ul1.appendChild(li4)
+
+            alert('SuccessFully Added')
+            que.value = ''
+            fOpt.value = ''
+            sOpt.value = ''
+            tOpt.value = ''
+            cOpt.value = ''
+
+            let a = que.value
+            let b = fOpt.value;
+            let c = sOpt.value;
+            let d = tOpt.value;
+            let e = cOpt.value;
+        })
+
+        
+        
+        function next() {
+            number++;
+            let potof = document.querySelectorAll('.que').length;
+            document.getElementById('number').innerHTML = `${number}/${potof}`;
+            document.querySelector('#details').style.display="none";
+            document.getElementsByTagName('button')[0].innerHTML = 'Next';
+            if(i < document.getElementsByClassName('que').length -1) {
+                i++;
+            let que = document.getElementsByClassName('que')[i];
+            let div = document.getElementById('content');
+            div.appendChild(que);
+            // console.log(i)
+            z++;
+            let x = document.getElementsByClassName('que')[z-1];
+            x.style.display='none'    
+           }
+           else {
+            alert(`You gave ${score/4} right answers from ${document.getElementsByClassName('que').length} `)
+            location.reload();
+        }
+        
+        
+    }
+    // ul.addEventListener('click', function(){console.log(document.getElementsByTagName(li))})
+
+    document.getElementById('addme').addEventListener('click', function() {
+        let addque = document.getElementById('addque');
+        addque.style.top='10vh';
+        document.getElementById('content').style.display='none';
+    })
+    document.getElementById('done').addEventListener('click', function() {
+        let addque = document.getElementById('addque');
+        addque.style.top='-100vh';
+        document.getElementById('content').style.display='block';
+    })
+   
+          
+
+
+        let ulInc = -1;
+        var x = 0;
+        let ulPoi = -1;
+        let li = document.querySelectorAll('li');
+        li.forEach(li => {
+           li.addEventListener('click' , function() {
+                ulInc++;
+                let ul = document.querySelectorAll('ul')[ulInc];
+                console.log(`my = ${ulInc} , x = ${x}`)
+                let add = x+4;
+                for(let i = x; i < add; i++) {
+                    x++;
+                    let li = document.querySelectorAll('ul>li')[i];
+                    
+                    if(this.hasAttribute('id')) {
+                        this.style.border='2px solid Green'
+                        score++;
+                        // return true;
+                    }
+                    else {
+                        this.style.border='2px solid red'
+                    }
+                }
+                ulPoi++;
+                document.getElementsByTagName('ul')[ulPoi].classList.add('pointer')
+            })
+            });
+
+            
+            
+
+        
+            
+        
+    
+    
+
+    </script>
+</body>
+</html>

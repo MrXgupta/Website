@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            background-color: #333;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 1px solid white;
+            width: fit-content;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        #bot , #user {
+            width: 40%;
+            background-color: #c7c7c7;
+            height: 50vh;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <center> <h1>Stone paper Scissor Game! </h1> </center>
+    <div class="container">
+    <div id="bot">
+    <img width="100%" height="100%" id="randomImage" src="" alt="GAME">
+    <img id="loadingImage" src="images/loading.gif" alt="Loading..." style="display: none; width:100%; height: 100%;">
+    </div>
+    <div id="user">
+        <label for="userImage">Select the same image:</label>
+        <select id="userImage">
+            <option value="images/paper.jpg">Paper </option>
+            <option value="images/stone.jpg">Stone</option>
+            <option value="images/scissor.jpg">Scissor</option>
+            
+        </select>
+    </div> </div>
+    <button onclick="changeImage()">change Images</button>
+    <button id="checkButton" > Check Selection </button>
+
+    <script>
+       // Random Image 
+
+       // Array of images
+    var images = ["images/stone.jpg", "images/paper.jpg", "images/scissor.jpg"];
+
+    // Function to change the image
+    function changeImage() {
+        document.getElementById("randomImage").style.display = "none";
+        document.getElementById("loadingImage").style.display = "block";
+
+    // Generate a random index
+    setTimeout(function() {
+         var randomIndex = Math.floor(Math.random() * images.length);
+         
+
+    // Get the image element
+        var imgElement = document.getElementById("randomImage");
+        var loadingElement = document.getElementById("loadingImage");
+
+    // Set the source of the image to a random image URL from the array
+    imgElement.src = images[randomIndex];
+
+
+     // Show random image and hide loading image
+     imgElement.style.display = "block";
+        loadingElement.style.display = "none"; },2000) 
+    
+}
+    window.onload = function() {
+    changeImage();
+    }
+
+    function checkSelection() {
+    // Get the value of the selected image by the user
+    var selectedImage = document.getElementById("userImage").value;
+
+    // Get the src of the randomly selected image
+    var randomImageSrc = document.getElementById("randomImage").src;
+
+    // Check if the user selected the same image as the random image
+    var result = (selectedImage === randomImageSrc);
+
+    // Return true if they match, false otherwise
+    return result;
+}
+
+    document.getElementById("checkButton").addEventListener("click", function() {
+    var isMatch = checkSelection();
+    if (isMatch) {
+        alert("Congratulations! You selected the same image as the random image.");
+    } else {
+        alert("Oops! You didn't select the same image as the random image. Try again.");
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To Do List By Alok Gupta </title>
+    <script src="https://kit.fontawesome.com/019376af01.js" crossorigin="anonymous"></script>
+    <script>
+        
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            background-color: rgb(235, 231, 226);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 20px;
+        }
+        h1, h4 {
+            display: inline-block;
+        } 
+        h1 , #time {
+            color: rgb(255, 119, 0);
+        }
+
+        header {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2.0em;
+        }
+        img {
+            width: 50px;
+        }
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #input {
+            width: 35%;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border-right: transparent;
+            
+        }
+
+        #btnAdd {
+            padding: 5px;
+            background-color: rgb(255, 119, 0);
+            border-radius: 20px;
+            width: 5%;
+            transform: translateX(-50px);
+        }
+
+       
+        #notes {
+            background-color: rgba(0, 0, 0 ,0.2);
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 20px;
+            height: auto;
+            margin: 20px 25%;
+        }
+
+        p , i{
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+         <h4>Hello, Habibi</h4>
+         <h1> Good Afternoon! </h1> 
+        </div>
+        <div >
+            <h4> Time : <span id="time"></span> </h4>
+        </div>
+    </nav>
+    <header>
+        <span> To Do List  </span> <img src="images/note.png" alt="Notes">
+    </header>
+
+    <div class="search">
+        <input type="text" id="input" placeholder="Add New Task ">
+        <button id="btnAdd" onclick="addNotes()"> Add </button>
+    </div>
+
+    <div id="main">
+       
+        
+    </div>
+    
+    <script>
+        setInterval(function() {
+            var date = new Date();
+            document.getElementById('time').innerHTML = ` ${date.toLocaleTimeString()} `;
+        },1000)
+        
+        let i = 0;
+        let array;
+        if( localStorage.getItem('task') == null) {
+            array = [];
+            localStorage.setItem('task' , JSON.stringify([]))
+        }
+        else {
+            array = JSON.parse(localStorage.getItem('task'))
+        }
+    
+        
+        let arr = [];
+        
+        function addNotes() {
+            var input = document.getElementById('input');
+            var main = document.getElementById('main')
+            
+            let createDiv = document.createElement('div');
+            createDiv.setAttribute('id', 'notes')
+            createDiv.setAttribute(`class`, `notes`)
+            
+            
+            var createRdo = document.createElement('input');
+            createRdo.setAttribute('type','radio');
+            createRdo.setAttribute('id','radioBtn');
+    
+            var createP = document.createElement('p');
+            createP.setAttribute('id',`p`);
+            
+    
+            var createI = document.createElement('i');
+            createI.setAttribute('class',`fa-solid fa-trash i${i}`)
+            createI.setAttribute('id', 'del');
+                            
+                createDiv.append(createRdo)
+                createDiv.append(createP)
+                createDiv.append(createI)
+                createP.innerHTML =  input.value ;
+                main.append(createDiv);
+
+                let a = input.value;
+                array.push([input.value]);
+                //console.log(array);
+           
+                input.value = '';
+                
+                
+                let remove = document.querySelector(`.i${i}`);
+                remove.addEventListener('click', function() { createDiv.remove();  });
+                //console.log(i);
+                i++;
+
+                localStorage.setItem('task', JSON.stringify(array));
+
+                console.log(arr.push(input.value));
+                
+               
+                
+            }
+
+
+            
+           
+
+
+
+    </script>
+</body>
+</html>

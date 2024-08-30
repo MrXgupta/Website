@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> E-commerce template by Alok Gupta </title>
+    <link rel="shortcut icon" href="images/shop.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/019376af01.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</head>
+
+<body onclick="ev(event)">
+    <div id="text1" class="font1">
+        <span>Explore , Shop , Ship</span>
+        <span></span>
+    </div>
+    <nav class="flex pad">
+        <figure>
+            <img src="images/shop.png" alt="Logo">
+            <span>Logo</span>
+        </figure>
+        <div id="div-search">
+            <input type="search" id="search" placeholder="Search products here">
+            <i class="fa-solid fa-magnifying-glass" id="search-sub"></i>
+        </div>
+        <div id="cart">
+            <span>cart</span>
+            <i class="fa-solid fa-cart-shopping" title="Cart"></i>
+        </div>
+
+        <div id="account">
+            <span>Login</span>
+            <span>/</span>
+            <span>Signup</span>
+            <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div id="select-1">
+            <i class="fa-solid fa-bars"></i>
+            <div id="option-1">
+                <ul>
+                    <li>Customer Support</li>
+                    <li>Notification Prefences</li>
+                    <li>Advertise</li>
+                    <li>Download app <i class="fa-solid fa-download"></i></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div id="slider">
+
+            <div class="slider-img">
+                <img src="images/products/1.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/2.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/3.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/4.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/5.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/6.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/7.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/8.jpg" alt="">
+
+            </div>
+
+            <div class="slider-img">
+                <img src="images/products/9.jpg" alt="">
+
+            </div>
+            <div class="slider-img">
+                <img src="images/products/10.jpg" alt="">
+            </div>
+        </div>
+        <div id="pagination">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <i class="fa-solid fa-arrow-left arrow"></i>
+        <i class="fa-solid fa-arrow-right arrow"></i>
+    </header>
+    <div class="pop-parent">
+        <div id="popup-1">
+            <h1>DISCOUNT</h1>
+            <h4>Discount on all items! <br> <strong>40% off</strong> for Today</h4>
+            <p>Enjoy Shopping</p>
+            <span>X</span>
+        </div>
+    </div>
+
+    <div id="trending">
+        <div id="side-trend">
+            <div id="side-cont">
+                <h3> Categories  </h3>
+                <h5>Best Sellers</h5>
+                <h5>Today's Deal</h5>
+                <h5>Mobile , Computers</h5>
+                <h5>Customer Service</h5>
+                <h5>Electronics</h5>
+                <h5>Fashion</h5>
+                <h5>Upcoming products or Deals</h5>
+                <h5>Digital Devices</h5>
+                <h5>Clothing</h5>
+                <h5>Account</h5>
+            </div>
+        </div>
+        
+        <div id="trend-cont">
+            <h1 class="h1-style">Trending</h1>
+            <div>
+                <img src="images/products/1.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+                <div id="tren-btn" class="flex">
+                    <button>Add to Cart</button>
+                    <button> Buy Now </button>
+                </div>
+
+            </div>
+
+            <div>
+                <img src="images/products/2.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/3.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/4.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/5.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/6.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/7.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/8.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/9.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <img src="images/products/10.jpg" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // function for getting event on body
+        function ev(event) {
+            console.log(event.target)
+        }
+
+        // function for nav bars
+        document.querySelector('#select-1>i').addEventListener('click', function () {
+            if (document.querySelector('#option-1').style.display == "none") {
+                document.querySelector('#option-1').style.display = "block";
+            }
+            else {
+                document.querySelector('#option-1').style.display = "none"
+            }
+        })
+
+
+
+        // Ads Display
+        // setTimeout(function () {
+        //     document.querySelector('.pop-parent').style.top = "0";
+        //     document.querySelector('#popup-1>span').addEventListener('click', function () {
+        //         document.querySelector('.pop-parent').style.top = "-100%";
+        //     })
+
+        // }, 3000)
+
+        // function for dots (pagination)
+        let span = 0;
+        function pagination() {
+            let dots = document.querySelectorAll('#pagination span');
+
+            dots.forEach(dot => {
+                dot.style.backgroundColor = "rgba(0,0,0,0.5)"
+            });
+
+            if (dots[span]) {
+                dots[span].style.backgroundColor = "black";
+            }
+        }
+
+        // calling slider function every 3s
+        setInterval(function() {
+            slider()
+            pagination()
+        }, 3000)
+
+
+        //calling pagination function
+        // pagination();
+
+        // slider function
+        function slider() {
+            span++;
+            let slider = document.querySelector('#slider')
+            slider.firstElementChild.style.display = "none";
+            // document.querySelector('#slider>div>img').style.transform = 'translateX(100%)'
+            slider.appendChild(slider.firstElementChild)
+            slider.lastElementChild.style.display = "flex";
+        }
+
+
+        // function for movies sliders images left or right || prev or next
+        let arrows = document.querySelectorAll('.arrow');
+        arrows[1].addEventListener('click', function () {
+            span++;
+            if (span >= 10) {
+                span = 0;
+            }
+            pagination();
+
+            let slider = document.querySelector('#slider')
+            slider.appendChild(slider.firstElementChild)
+        })
+        arrows[0].addEventListener('click', function () {
+            span--;
+            if (span < 0) {
+                span = 9;
+            }
+            pagination();
+
+            let slider = document.querySelector('#slider')
+            slider.insertBefore(slider.lastElementChild, slider.firstElementChild)
+        })
+
+
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

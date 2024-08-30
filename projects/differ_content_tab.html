@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Different Content Tab </title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html {
+            background-color: #333;
+            color: white;
+        }
+        button {
+            padding: 3px;
+            background-color: white;
+            color: black;
+            border: 1px solid transparent;
+            width: 10%;
+            font-size: 0.7em;
+        }
+        main {
+            text-align: center;
+        }
+
+        .none {
+            display: none;
+            transition: 1s;
+        }
+
+        .active {
+            background-color: red;
+            border: 1px solid white;
+            color: white;
+            transition: 0.8s;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <main>
+        <h1> About </h1>
+        <span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos praesentium inventore provident deleniti labore sapiente.</span>
+        <div>
+                <img src="images/kakashi.jpg" alt="">
+            <div id="div">
+                <button id="history" class="active"> History </button>
+                <button id="Vision" class="active"> Vision </button>
+                <button id="Goals" class="active">Goals </button>
+                <p id="me" class="none"> History - Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur nihil, quis tempore quas perspiciatis, mollitia nobis soluta suscipit eos, odit nisi est recusandae. Sequi distinctio ex enim facilis mollitia quam impedit amet esse commodi earum! Non dignissimos, est veritatis obcaecati quidem asperiores excepturi velit repellendus fuga cupiditate, facilis, architecto aut.</p>
+                <p id="me1" class="none"> Vision - Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, voluptatibus ea tempore quisquam repudiandae quasi cumque. Vel iusto, quidem culpa eum quam cumqueaddr similique recusandae. Ex cum est quidem soluta qui odit nihil vel autem fuga, consectetur maiores praesentium facilis saepe ea sint, numquam et! Nulla voluptatibus obcaecati minima quos.</p>
+                <p id="me2" class="none"> Goals - Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga ducimus, quasi at magnam error et placeat facere neque modi tenetur distinctio nisi id quod expedita quam nihil dolor esse eos autem non perferendis dicta blanditiis reiciendis nam. Illo, voluptatum dignissimos corporis ducimus iste aliquam sequi exercitationem reiciendis minima eaque est.</p>
+            </div>
+        </div>
+    </main>
+    <script>
+
+        window.onload = function() {
+        document.getElementsByTagName('button')[0].addEventListener('click', function() {
+            document.getElementById('history').classList.toggle('active')
+            document.getElementById('me').classList.toggle('none')
+            document.getElementById('me1').classList.add('none')
+            document.getElementById('me2').classList.add('none')
+            document.getElementById('Vision').classList.add('active')
+            document.getElementById('Goals').classList.add('active')
+            
+        })
+        document.getElementsByTagName('button')[1].addEventListener('click', function() {
+            document.getElementById('Vision').classList.toggle('active')
+            document.getElementById('me1').classList.toggle('none')
+            document.getElementById('me').classList.add('none')
+            document.getElementById('me2').classList.add('none')
+            document.getElementById('history').classList.add('active')
+            document.getElementById('Goals').classList.add('active')
+            
+        })
+        document.getElementsByTagName('button')[2].addEventListener('click', function() {
+            document.getElementById('Goals').classList.toggle('active')
+            document.getElementById('me2').classList.toggle('none')
+            document.getElementById('me').classList.add('none')
+            document.getElementById('me1').classList.add('none')
+            document.getElementById('history').classList.add('active')
+            document.getElementById('Vision').classList.add('active')
+
+        })
+        
+
+        function firstBtn() {
+        }
+
+    }
+    </script>
+</body>
+</html>

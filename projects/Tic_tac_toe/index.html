@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game | By Alok Gupta </title>
+    <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/tic-tac-toe-1996265-1689002.png?f=webp&w=256" type="image/x-icon">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            text-align: center;
+            user-select: none;
+        }
+
+        html {
+            background-color: rgb(8, 94, 52);
+            overflow: hidden;
+            transition: 0.3s;
+            color: white;
+        }
+
+        #game {
+            display: flex;
+            flex-wrap: wrap;
+            width: 30%;
+            margin: 0 35%;
+            position: relative;
+            top: 10vh;
+            
+        }
+
+        #box {
+            width: 33%;
+            height: 12vh;
+            border: 1px solid rgb(255, 255, 255);
+            line-height: 60px;
+            font-size: 2.5em;
+            overflow: hidden;
+            /* transition: 0.3s ease; */
+            color: rgb(8, 94, 52);
+        }
+
+        #box:nth-child(1) {
+            border-top: transparent;
+            border-left: transparent;
+        }
+        #box:nth-child(2) {
+            border-top: transparent;
+        }
+        #box:nth-child(3) {
+            border-top: transparent;
+            border-right: transparent;
+        }
+        #box:nth-child(4) {
+            border-left: transparent;
+        }
+        #box:nth-child(6) {
+            border-right: transparent;
+        }
+        #box:nth-child(7) {
+            border-bottom: transparent;
+            border-left: transparent;
+        }
+        #box:nth-child(8) {
+            border-bottom: transparent;
+        }
+        #box:nth-child(9) {
+            border-bottom: transparent;
+            border-right: transparent;
+        }
+
+
+        .prevent-highlight {
+        user-select: none;
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: white;
+            filter: drop-shadow(5px 5px 10px red);
+        }
+
+        button {
+            padding: 0 15px;
+            background-color: azure;
+            border: transparent;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: relative;
+            /* left: -60vw; */
+            height: 3vh;
+            transition: 2s ease;
+            margin-top: 10px;
+        }
+
+        button::before {
+            content: '';
+            width: 5px;
+            height: 3vh;
+            background-color: brown;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        button::after {
+            content: '';
+            width: 10px;
+            height: 3vh;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: yellow;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        p {
+            border: 1px solid rgb(255, 255, 255);
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        #result {
+            width: 50%;
+            height: 50px;
+            background-color: white;
+            position: absolute;
+            top: -40vh;
+            left: 25%;
+            line-height: 50px;
+            color: black;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            transition: 0.3s ease;
+        }
+
+        .box-animate {
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(20px);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+
+
+        
+        @media only screen and (max-width: 600px) {
+            /* html {
+                
+            } */
+            #game {
+                width: 90%;
+                margin: 0 5%;
+                height: 30%;
+                top: 15vh;
+            }
+        }
+
+        </style>
+</head>
+<body>
+    <h1> Tic Tac Toe Game </h1>
+    <p> You = ❌ | AI = ⭕ </p> <br>
+    <button id="btn"> Restart Game </button>
+    <div id="game" class="box-animate">
+        <div id="box">0</div>
+        <div id="box">1</div>
+        <div id="box">2</div>
+        <div id="box">3</div>
+        <div id="box">4</div>
+        <div id="box">5</div>
+        <div id="box">6</div>
+        <div id="box">7</div>
+        <div id="box">8</div>
+    </div>
+
+    <div id="result">
+        <h2 id="result2">  </h2>
+    </div>
+
+    <script>
+
+       
+
+        document.querySelector('#btn').addEventListener('click' , function() {
+            this.style.transform="translateX(70vw)";
+            setTimeout(function() {
+                location.reload();
+            } , 1500)
+        })
+        
+        let boxes = document.querySelectorAll('#box');
+        let numList = [];
+       
+        
+        for (let box of boxes) {
+            box.addEventListener('click', function(e) {
+                document.querySelector('#game').classList.remove('box-animate')
+                if(box.innerHTML == '❌' || box.innerHTML == '⭕') {
+                    console.log('Already had')
+                    return;
+                }
+                else {
+                    let t = event.target;
+                    t.innerHTML = '❌';
+                }
+                let index = Array.from(boxes).indexOf(event.target);
+                numList.push(index);
+                          
+                bot(numList)
+                
+                // For Game Winning Validation
+                chkfun();
+            })
+        }
+
+        
+        function bot(numList) {
+        let randomNumber;
+        do {
+        randomNumber = Math.floor(Math.random() * 10);
+       
+        } while (numList.includes(randomNumber));
+        numList.push(randomNumber)
+        
+        Array.from(boxes)[randomNumber].innerHTML = '⭕';
+        
+         
+         return randomNumber;
+        }
+
+        function chkfun() {
+            if((boxes[0].innerHTML === boxes[1].innerHTML && boxes[1].innerHTML === boxes[2].innerHTML) ||
+                (boxes[0].innerHTML === boxes[3].innerHTML && boxes[3].innerHTML === boxes[6].innerHTML) ||
+                (boxes[3].innerHTML === boxes[4].innerHTML && boxes[4].innerHTML === boxes[5].innerHTML) ||
+                (boxes[6].innerHTML === boxes[7].innerHTML && boxes[7].innerHTML === boxes[8].innerHTML) ||
+                (boxes[1].innerHTML === boxes[4].innerHTML && boxes[4].innerHTML === boxes[7].innerHTML) ||
+                (boxes[2].innerHTML === boxes[5].innerHTML && boxes[5].innerHTML === boxes[8].innerHTML) ||
+                (boxes[0].innerHTML === boxes[4].innerHTML && boxes[4].innerHTML === boxes[8].innerHTML) ||
+                (boxes[2].innerHTML === boxes[4].innerHTML && boxes[4].innerHTML === boxes[6].innerHTML)) {
+                    document.querySelector('#result2').innerHTML = 'Game Over';
+                    document.querySelector('#result').style.top = "40vh";
+                    setTimeout(function() {
+                        location.reload()
+                    },800)
+                }
+        }
+
+        
+    </script>
+</body>
+</html>

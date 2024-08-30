@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> My Notes App! </title>
+    <style>
+        .body {
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+        .body1 {
+            background-color: #333;
+            color: white;
+            transition: 0.9s;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            margin-top: 5vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input {
+            width: 25%;
+            height: 15vh;
+        }
+        #savedNotes {
+            display: none;
+        }
+
+        ul {
+            background-color: antiquewhite;
+            width: 40%;
+            margin: 5px 30%;
+            padding: 10px;
+            list-style: none;
+            border-radius: 10px;
+            display: none;
+        }
+
+        li {
+            padding: 5px;
+            height: 15vh;
+            background-color: white;
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+    
+
+    </style>
+</head>
+<body class="body">
+    <h1> My Notes - Notera </h1>
+    <div class="container">
+        <textarea id="noteInput" cols="50" rows="7" placeholder="Write your text Here"></textarea>
+        <button id="btn-add" onclick="addNote()"> Add Note </button>
+        <button onclick="chngTheme()"> Change Theme </button>
+        <ul id="notesList"></ul>
+    </div>
+    <p id="savedNotes"></p>
+
+    <script>
+
+        function chngTheme() {
+            let body = document.getElementsByClassName('body')[0];
+            body.classList.toggle( 'body1')
+        }
+       /* function addNotes() {
+            let text = document.getElementById('txt-area').value;
+            let saved = document.getElementById("savedNotes");
+            saved.style.display="block";
+            localStorage.setItem('saved', text);
+            document.getElementById("savedNotes").innerHTML = document.getElementById("savedNotes").innerHTML + ` ${text}  <br> `;
+        }
+
+        function addNote() {
+    var noteInput = document.getElementById("noteInput");
+    var noteText = noteInput.value.trim();
+    document.getElementsByTagName('ul')[0].style.display="block";
+
+    if (noteText !== "") {
+        var notesList = document.getElementById("notesList");
+        var li = document.createElement("li");
+        li.textContent = noteText;
+        notesList.appendChild(li);
+        noteInput.value = "";
+    }
+} */
+
+    // Function to retrieve notes from local storage
+function getNotes() {
+    var savedNotes = localStorage.getItem("notes");
+    return savedNotes ? JSON.parse(savedNotes) : [];
+}
+
+// Function to save notes to local storage
+function saveNotes(notes) {
+    localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+// Function to load notes from local storage and display them
+function loadNotes() {
+    var notes = getNotes();
+    var notesList = document.getElementById("notesList");
+    notesList.innerHTML = "";
+
+    notes.forEach(function(note) {
+        var li = document.createElement("li");
+        li.textContent = note;
+        notesList.appendChild(li);
+    });
+}
+
+// Function to add a new note
+function addNote() {
+    var noteInput = document.getElementById("noteInput");
+    var noteText = noteInput.value.trim();
+    document.getElementsByTagName('ul')[0].style.display="block";
+
+    if (noteText !== "") {
+        var notes = getNotes();
+        notes.push(noteText);
+        saveNotes(notes);
+        loadNotes();
+        noteInput.value = "";
+    }
+}
+
+// Load notes when the page loads
+window.addEventListener('load', loadNotes());
+
+
+    </script>
+</body>
+</html>

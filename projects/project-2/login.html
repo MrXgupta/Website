@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AGesta - Login/Signup</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <a href="index.html">
+                    <li>HOME</li>
+                </a>
+
+                <a href="about.html">
+                    <li>ABOUT</li>
+                </a>
+
+                <a href="">
+                    <li>CHECK IN</li>
+                </a>
+
+                <a href="">
+                    <li>Gallery</li>
+                </a>
+
+                <a href="login.html">
+                    <li>LOGIN/SIGNUP</li>
+                </a>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-cont">
+        <div class="info">
+            <h1 class="info-h1">Hello, Friend</h1>
+            <button id="log-switch">SignUp</button>
+        </div>
+        <div class="login">
+            <form action="" id="login-form">
+                <h4>Sign in to AGesta</h4>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password"> 
+                <a href=""> Forgot Your Password? </a>
+                <button id="SignIn-btn">Sign In</button>
+            </form>
+
+        </div>
+        <div class="signup">
+            <form action="" id="signUp-form">
+                <h4>Create Account Now!</h4>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <p class="pswrd"></p>
+
+                <button id="signUp-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let check = true;
+        let btn = document.querySelector('#log-switch');
+        let info = document.querySelector('.info');
+        let signUp = document.querySelector('.signup');
+        let logIn = document.querySelector('.login');
+        let h1 = document.querySelector('.info-h1')
+        let input = document.querySelectorAll('input');
+        let loginBtn = document.querySelector('#SignIn-btn');
+        let signupBtn = document.querySelector('#signUp-btn');
+        let namePattern = /^[a-zA-Z\s'-]{2,50}$/;
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let passwordPattern =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        console.log(input);
+        btn.addEventListener('click', () => {
+            if (check == true) {
+                logIn.style.display = "flex";
+                info.style.left = "70%";
+                btn.textContent = 'LogIn'
+                signUp.style.left = "-100%";
+                logIn.style.right = "0";
+                signUp.style.flexBasis = "30%";
+                logIn.style.flexBasis = "70%";
+                signUp.style.display = "none";
+                h1.textContent = "Welcome Back!"
+                check = false;
+            }
+            else {
+                signUp.style.display = "flex";
+                btn.textContent = 'SignUp'
+                info.style.left = "0";
+                signUp.style.left = "30%";
+                logIn.style.right = "0";
+                signUp.style.flexBasis = "70%";
+                logIn.style.flexBasis = "30%";
+                logIn.style.display = "none";
+                h1.textContent = "Hello, Friend"
+                check = true;
+            }
+        })
+
+        loginBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log("Input 1:", input[0]);
+            console.log("Input 2:", input[1]);
+            if (input[0].value !== '' && input[1].value !== '') {
+                if(emailPattern.test(input[0].value)  && passwordPattern.test(input[1].value)) {
+                window.location.href = "index.html";
+                }
+            }
+            else {
+                alert("Fill Out the form");
+            }
+        })
+
+        signupBtn.addEventListener('click', (event)=> {
+            event.preventDefault();
+            if (input[2].value !== '' && input[3].value !== '' && input[4].value !== '') {
+                if(namePattern.test(input[2].value)  && emailPattern.test(input[3].value) && passwordPattern.test(input[4].value)) {
+                alert("Data Successfully Recorded");
+                }
+                else {
+                    alert("Please obey the Instructions")
+                }
+            }
+            else {
+                alert("Please Fill All the Entries")
+            }
+        });
+
+        input[4].addEventListener('keyup',()=> {
+            document.querySelector('.pswrd').innerHTML = `Password: ${input[4].value}`;
+        })
+
+
+
+        // else if(emailPattern.test(input[0].value)  && passwordPattern.test(input[1].value)) {
+        //         window.location.href = "index.html";
+        //     }
+    </script>
+</body>
+
+</html>
